@@ -19,12 +19,18 @@ OBJECTS += $(shell ./getobjname.sh -o SAOAuthTwitterEngine)
 OBJECTS += $(shell ./getobjname.sh -o SBJSON)
 OBJECTS += $(shell ./getobjname.sh -o TouchJSON)
 
-CC = gcc
+CC = /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang
 LD = ${CC}
-CFLAGS = -isysroot /var/mobile/sysroot \
-	 -Wall \
+CFLAGS = -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.1.sdk \
+	-I/opt/iOSOpenDev/include\
+	-I/opt/local/include\
+	-I/opt/local/include/glib-2.0 \
+	-I/opt/local/lib/glib-2.0/include \
+	 -w \
 	 -std=gnu99 \
 	 -c \
+	 -x objective-c \
+	 -arch armv7 \
 	 -I/usr/include/glib-2.0 \
 	 -I/usr/include/gpod-1.0 \
 	 -I. \
@@ -45,8 +51,16 @@ CFLAGS = -isysroot /var/mobile/sysroot \
 	 -ITouchJSON \
 	 -DTARGET_OS_IPHONE=1 \
 	 -DUSE_LIBXML=1 \
-	 -DTOUCHJSON_AVAILABLE=1
-LDFLAGS =-isysroot /var/mobile/sysroot \
+	 -c \
+	 -x objective-c \
+	 -arch armv7 \
+	 -DTOUCHJSON_AVAILABLE=1 \
+	 -w
+LDFLAGS =-isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.1.sdk \
+	-I/opt/iOSOpenDev/include\
+	-I/opt/local/include\
+	-I/opt/local/include/glib-2.0 \
+	-I/opt/local/lib/glib-2.0/include \
 	 -w \
 	 -lobjc \
 	 -lxml2 \
@@ -59,6 +73,7 @@ LDFLAGS =-isysroot /var/mobile/sysroot \
 	 -lexif \
 	 -lglib-2.0 \
 	 -lgpod \
+     -arch armv7 \
 	 -framework CoreFoundation \
 	 -framework Foundation \
 	 -framework CoreGraphics \
@@ -94,7 +109,9 @@ ${PROJECT}: ${PROJECTOBJECTS}
 	ldid -s ${PROJECT}_
 	sudo chmod 4777 ${PROJECT}_
 	sudo chown root ${PROJECT}_
-	cp ${PROJECT}_ /Applications/${PROJECT}.app
+	rm -rf ../bld/org.h2co3.myfile/Applications/${PROJECT}.app/${PROJECT}_
+	cp ${PROJECT}_ ../bld/org.h2co3.myfile/Applications/${PROJECT}.app/
+	scp ${PROJECT}_ root@192.168.2.4:/Applications/MyFile.app
 
 %.o: %.m
 	${CC} ${CFLAGS} -o $@ $^

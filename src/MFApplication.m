@@ -13,8 +13,7 @@
 
 - (BOOL) application: (UIApplication *) application didFinishLaunchingWithOptions: (NSDictionary *) options {
 
-	mainWindow = [[UIWindow alloc] initWithFrame: CGRectMake(0, 0, 320, 480)];
-	[mainWindow makeKeyAndVisible];
+	mainWindow = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 
 	mc = [[MFMainController alloc] init];
 	mainController = [[UINavigationController alloc] initWithRootViewController: mc];
@@ -24,13 +23,12 @@
 
 		pc = [[MFPasswordController alloc] init];
 		pc.delegate = self;
-	passwordController = [[UINavigationController alloc] initWithRootViewController: pc];
-		[mainWindow addSubview: passwordController.view];
-		[mainWindow addSubview: passwordController.view];
+        passwordController = [[UINavigationController alloc] initWithRootViewController: pc];
+		[mainWindow setRootViewController:passwordController];
 
 	} else {
 	
-		[mainWindow addSubview: mainController.view];
+		[mainWindow setRootViewController:mainController];
 		
 	}
 	
@@ -48,6 +46,8 @@
 		[[NSUserDefaults standardUserDefaults] synchronize];
 
 	}
+    
+    [mainWindow makeKeyAndVisible];
 	
 	return YES;
 	

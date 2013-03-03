@@ -7,7 +7,4 @@
 
 #import <Foundation/Foundation.h>
 
-
-/*
-NSString *MFLocalizedString(NSString *key);
-*/
+NSString* MFLocalizedString(NSString *key);

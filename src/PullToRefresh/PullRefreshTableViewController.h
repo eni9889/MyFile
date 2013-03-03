@@ -28,10 +28,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "MFLocalizedString.h"
 
-@interface PullRefreshTableViewController : UIViewController <UITableViewDelegate, UITableViewDataSource> {
-    UITableView *tableView;
+
+@interface PullRefreshTableViewController : UITableViewController {
     UIView *refreshHeaderView;
     UILabel *refreshLabel;
     UIImageView *refreshArrow;
@@ -43,7 +42,6 @@
     NSString *textLoading;
 }
 
-@property (nonatomic, retain) UITableView *tableView;
 @property (nonatomic, retain) UIView *refreshHeaderView;
 @property (nonatomic, retain) UILabel *refreshLabel;
 @property (nonatomic, retain) UIImageView *refreshArrow;
@@ -52,6 +50,7 @@
 @property (nonatomic, copy) NSString *textRelease;
 @property (nonatomic, copy) NSString *textLoading;
 
+- (void)setupStrings;
 - (void)addPullToRefreshHeader;
 - (void)startLoading;
 - (void)stopLoading;

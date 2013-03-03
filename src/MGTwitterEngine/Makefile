@@ -1,7 +1,7 @@
 OBJECTS = $(shell ./getobjname.sh)
-CC = gcc
-CFLAGS = -isysroot /var/mobile/sysroot \
-	 -Wall \
+CC = /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang
+CFLAGS = -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.1.sdk \
+	 -w \
 	 -std=gnu99 \
 	 -c \
 	 -I.. \
@@ -21,6 +21,9 @@ CFLAGS = -isysroot /var/mobile/sysroot \
 	 -I../TouchJSON \
 	 -DTARGET_OS_IPHONE=1 \
 	 -DUSE_LIBXML=1 \
+	 -c \
+	 -x objective-c \
+	 -arch armv7 \
 	 -DTOUCHJSON_AVAILABLE=1
 
 all: ${OBJECTS}

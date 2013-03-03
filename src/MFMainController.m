@@ -71,19 +71,6 @@
 	footerLabel.text = [NSString stringWithFormat: MFLocalizedString(@"%i item(s); %@ free"), [files count], [fileManager freeSpace: currentDirectory]];
 	self.tableView.tableFooterView = footerLabel;
 	
-	toolbar = [[UIToolbar alloc] initWithFrame: CGRectMake (0, 412, 320, 48)];
-	UIBarButtonItem *flexItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem: UIBarButtonSystemItemFlexibleSpace target: nil action: NULL];
-	UIBarButtonItem *toolbarItem_0 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem: UIBarButtonSystemItemAdd target: self action: @selector(createFile)];
-	UIBarButtonItem *toolbarItem_1 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem: UIBarButtonSystemItemAction target: self action: @selector(showAction)];
-	UIBarButtonItem *toolbarItem_2 = [[UIBarButtonItem alloc] initWithImage: [UIImage imageNamed: @"dropboxbutton.png"] style: UIBarButtonItemStylePlain target: self action: @selector(showDropbox)];
-	UIBarButtonItem *toolbarItem_3 = [[UIBarButtonItem alloc] initWithImage: [UIImage imageNamed: @"homebutton.png"] style: UIBarButtonItemStylePlain target: self action: @selector(goHome)];
-	UIBarButtonItem *toolbarItem_4 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem: UIBarButtonSystemItemBookmarks target: self action: @selector(showBookmarks)];
-	NSArray *toolbarItems = [NSArray arrayWithObjects: toolbarItem_0, flexItem, toolbarItem_1, flexItem, toolbarItem_2, flexItem, toolbarItem_3, flexItem, toolbarItem_4, nil];
-	toolbar.barStyle = UIBarStyleBlack;
-	toolbar.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleTopMargin;
-	[toolbar setItems: toolbarItems animated: YES];
-	[self.view addSubview: toolbar];
-
 	bookmarksController = [[MFBookmarksController alloc] init];
 	bookmarksController.mainController = self;
 	detailsController = nil;
@@ -159,6 +146,27 @@
 
 }
 
+-(void)viewDidLoad
+{
+    [super viewDidLoad];
+    UIBarButtonItem *flexItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem: UIBarButtonSystemItemFlexibleSpace target: nil action: NULL];
+	UIBarButtonItem *toolbarItem_0 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem: UIBarButtonSystemItemAdd target: self action: @selector(createFile)];
+	UIBarButtonItem *toolbarItem_1 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem: UIBarButtonSystemItemAction target: self action: @selector(showAction)];
+	UIBarButtonItem *toolbarItem_2 = [[UIBarButtonItem alloc] initWithImage: [UIImage imageNamed: @"dropboxbutton.png"] style: UIBarButtonItemStylePlain target: self action: @selector(showDropbox)];
+	UIBarButtonItem *toolbarItem_3 = [[UIBarButtonItem alloc] initWithImage: [UIImage imageNamed: @"homebutton.png"] style: UIBarButtonItemStylePlain target: self action: @selector(goHome)];
+	UIBarButtonItem *toolbarItem_4 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem: UIBarButtonSystemItemBookmarks target: self action: @selector(showBookmarks)];
+	NSArray *toolbarItems = [NSArray arrayWithObjects: toolbarItem_0, flexItem, toolbarItem_1, flexItem, toolbarItem_2, flexItem, toolbarItem_3, flexItem, toolbarItem_4, nil];
+    
+    [self setToolbarItems:toolbarItems animated:YES];
+    
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [self.navigationController setToolbarHidden:NO];
+}
+
 - (BOOL) shouldAutorotateToInterfaceOrientation: (UIInterfaceOrientation) orientation {
 
 	return (orientation == UIInterfaceOrientationPortrait) || (orientation == UIInterfaceOrientationLandscapeRight);
@@ -188,8 +196,6 @@
 	currentDirectory = nil;
 	[searchResult release];
 	searchResult = nil;
-	[toolbar release];
-	toolbar = nil;
 	[footerLabel release];
 	footerLabel = nil;
 	[bookmarksController release];

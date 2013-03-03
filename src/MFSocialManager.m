@@ -42,8 +42,7 @@ static MFSocialManager *_sharedManager = nil;
 	}
 
 	twitter = [[SA_OAuthTwitterEngine alloc] initOAuthWithDelegate: self];
-	twitter.consumerKey = MF_TWITTER_KEY;
-	twitter.consumerSecret = MF_TWITTER_SECRET;
+	[twitter setConsumerKey:MF_TWITTER_KEY secret:MF_TWITTER_SECRET];
 	
 	return self;
 	

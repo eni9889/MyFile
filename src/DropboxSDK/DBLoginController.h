@@ -8,8 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-#define UI_USER_INTERFACE_IDIOM() ([[UIDevice currentDevice] respondsToSelector:@selector(userInterfaceIdiom)] ? [[UIDevice currentDevice] userInterfaceIdiom] : 0)
-
 @interface UINavigationController (iOS_3_2)
 @property (assign) int modalPresentationStyle;
 @end

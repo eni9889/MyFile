@@ -10,6 +10,7 @@
 #import "MFModalController.h"
 #import "MFPictureMetadata.h"
 #import "MFLocalizedString.h"
+#import "MFImageMetadataEntryController.h"
 
 @protocol MFImageMetadataEntryControllerDelegate;
 

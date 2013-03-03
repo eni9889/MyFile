@@ -32,7 +32,6 @@
 	OAToken		*_requestToken;
 }
 
-@property (nonatomic, readwrite, retain) NSString *consumerSecret, *consumerKey;
 @property (nonatomic, readwrite, retain) NSURL *requestTokenURL, *accessTokenURL, *authorizeURL;
 @property (nonatomic, readonly) BOOL OAuthSetup;
 @property (nonatomic, readwrite, retain)  NSString *pin;

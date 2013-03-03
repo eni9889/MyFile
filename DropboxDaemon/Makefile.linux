@@ -1,7 +1,7 @@
 OBJECTS = $(shell ./getobjname.sh)
 TOOLCHAIN = /home/h2co3/ios-toolchain/toolchain/pre/bin
 CC = ${TOOLCHAIN}/arm-apple-darwin9-gcc
-CFLAGS = -Wall \
+CFLAGS = -w \
 	 -std=gnu99 \
 	 -c \
 	 -I.. \
@@ -20,6 +20,9 @@ CFLAGS = -Wall \
 	 -I../TouchJSON \
 	 -DTARGET_OS_IPHONE=1 \
 	 -DUSE_LIBXML=1 \
+	 -c \
+	 -x objective-c \
+	 -arch armv7 \
 	 -DTOUCHJSON_AVAILABLE=1
 
 all: ${OBJECTS}

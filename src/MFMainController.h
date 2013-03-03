@@ -27,7 +27,6 @@
         UIActionSheet *sharing;
         UIActionSheet *trash;
 	UISearchBar *searchBar;
-	UIToolbar *toolbar;
 	UILabel *footerLabel;
 	MFFileManager *fileManager;
 	MFBookmarksController *bookmarksController;
