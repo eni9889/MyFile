@@ -1,6 +1,6 @@
 OBJECTS = $(shell ./getobjname.sh)
-CC = /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang
-CFLAGS = -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.1.sdk \
+
+CFLAGS = -isysroot ${SYSROOT} \
 	 -w \
 	 -std=gnu99 \
 	 -c \

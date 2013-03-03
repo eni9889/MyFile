@@ -19,9 +19,9 @@ OBJECTS += $(shell ./getobjname.sh -o SAOAuthTwitterEngine)
 OBJECTS += $(shell ./getobjname.sh -o SBJSON)
 OBJECTS += $(shell ./getobjname.sh -o TouchJSON)
 
-CC = /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang
+
 LD = ${CC}
-CFLAGS = -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.1.sdk \
+CFLAGS = -isysroot ${SYSROOT} \
 	-I/opt/iOSOpenDev/include\
 	-I/opt/local/include\
 	-I/opt/local/include/glib-2.0 \
@@ -56,7 +56,7 @@ CFLAGS = -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS
 	 -arch armv7 \
 	 -DTOUCHJSON_AVAILABLE=1 \
 	 -w
-LDFLAGS =-isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.1.sdk \
+LDFLAGS = -isysroot ${SYSROOT} \
 	-I/opt/iOSOpenDev/include\
 	-I/opt/local/include\
 	-I/opt/local/include/glib-2.0 \

@@ -1,12 +1,12 @@
 PROJECT = dropboxd
 OBJECTS = $(shell ./getobjname.sh)
-CC = /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang
+
 LD = ${CC}
-CFLAGS = -isysroot /var/mobile/sysroot \
+CFLAGS = -isysroot ${SYSROOT} \
 	 -w \
 	 -std=gnu99 \
 	 -c
-LDFLAGS=-isysroot /var/mobile/sysroot \
+LDFLAGS= -isysroot ${SYSROOT} \
 	-w \
 	-lobjc \
 	-framework Foundation \
